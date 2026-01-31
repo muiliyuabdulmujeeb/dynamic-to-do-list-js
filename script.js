@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 removeBtn.parentElement.remove()
             });
 
-            taskTextLi.append(removeBtn);
-            taskList.append(taskTextLi);
+            taskTextLi.appendChild(removeBtn);
+            taskList.appendChild(taskTextLi);
             taskInput.value = "";
 
         };
@@ -32,6 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
             addTask()
         };
     });
-    
+
     document.addEventListener("DOMContentLoaded", addTask);
 });
