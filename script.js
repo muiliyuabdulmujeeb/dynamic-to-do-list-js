@@ -1,4 +1,11 @@
+function loadTasks() {
+    const storedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+    storedTasks.forEach(taskText => addTask(taskText, false)); // 'false' indicates not to save again to Local Storage
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
+    loadTasks();
     const addButton = document.getElementById("add-task-btn");
     const taskInput = document.getElementById("task-input");
     const taskList = document.getElementById("task-list");
@@ -15,11 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
             removeBtn.classList.add("remove-btn");
             removeBtn.textContent = "Remove";
             removeBtn.addEventListener("click", () => {
-                removeBtn.parentElement.remove()
+                removeBtn.parentElement.remove();
+                
             });
 
             taskTextLi.appendChild(removeBtn);
             taskList.appendChild(taskTextLi);
+            const storedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+            storedTasks.push(taskText);
+            localStorage.setItem('tasks', JSON.stringify(storedTasks));
             taskInput.value = "";
 
         };
